@@ -9,12 +9,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { NumpadComponent } from './popups/numpad/numpad.component';
+import { RoomControlComponent } from './components/room-control/room-control.component';
+import { APIService } from './services/api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { IOButtonComponent } from './components/io-button/io-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NumpadComponent
+    NumpadComponent,
+    RoomControlComponent,
+    IOButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +33,12 @@ import { NumpadComponent } from './popups/numpad/numpad.component';
     MatIconModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    APIService
+  ],
   entryComponents: [
     NumpadComponent
   ],

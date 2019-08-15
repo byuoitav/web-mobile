@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { MatBottomSheet } from '@angular/material';
 import { NumpadComponent } from 'src/app/popups/numpad/numpad.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,9 @@ export class LoginComponent implements OnInit {
   keyboardEmitter: EventEmitter<string>;
 
 
-  constructor(private bottomSheet: MatBottomSheet) {
+  constructor(
+    private bottomSheet: MatBottomSheet,
+    private router: Router) {
     this.keyboardEmitter = new EventEmitter<string>();
     this.keyboardEmitter.subscribe((s) => {
       this.roomCode = s;
@@ -30,6 +33,7 @@ export class LoginComponent implements OnInit {
       }).afterDismissed().subscribe((result) => {
         if (result !== undefined) {
           console.log('redirecting using the following room code:', this.roomCode);
+          this.goToRoomControl();
         }
     });
   }
@@ -40,5 +44,11 @@ export class LoginComponent implements OnInit {
     }
 
     return '';
+  }
+
+  goToRoomControl = () => {
+    // TODO: actually do something with the room code
+    const roomID = 'ITB-1101';
+    this.router.navigate(['/room/' + roomID]);
   }
 }
